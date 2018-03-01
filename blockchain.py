@@ -72,8 +72,17 @@ blockchain = Blockchain()
 
 @app.route('/mine', methods=['GET'])
 def mine():
-	return "We'll mine a new block"
+	last_block = blockchain.last_block
+	last_proof = last_block['proof']
+	proof = blockchain.proof_of_work(last_proof)
 
+	blockchain.new_transaction {
+		sender="0",
+		recipient=node_identifier,
+		amount=1,
+	}
+
+previous_hash = blockchain.hash(last_block)
 @app.route('/transactions/new', methods=['POST'])
 def new_transaction():
 	values = request.get_json()
